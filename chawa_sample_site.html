@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chawa | 守口市 プライベートネイルサロン</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#fdf8f5;color:#2a1520;font-family:'Noto Sans JP',sans-serif;font-weight:300;padding-bottom:80px}
+
+.reserve-bar{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#2a1520;display:flex;gap:2px;padding:10px 12px;box-shadow:0 -4px 20px rgba(0,0,0,0.3)}
+.reserve-bar a{flex:1;padding:13px 4px;text-align:center;font-size:12px;font-weight:700;text-decoration:none;border-radius:4px;display:block}
+.btn-tel{background:#8b3a5a;color:white}
+.btn-line{background:#06c755;color:white}
+.btn-web{background:#c8963e;color:white}
+
+nav{position:sticky;top:0;z-index:100;background:white;border-bottom:1px solid #f0dde6;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;font-style:italic;color:#2a1520;text-decoration:none;letter-spacing:3px}
+.nav-links{display:flex;gap:20px;list-style:none}
+.nav-links a{font-size:11px;color:#999;text-decoration:none}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,#3a1828 0%,#5a2840 100%);padding:56px 24px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.04)}
+.hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.03)}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);font-size:10px;letter-spacing:3px;padding:5px 14px;margin-bottom:16px}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:600;font-style:italic;color:white;letter-spacing:6px;margin-bottom:8px;line-height:1}
+.hero-sub{font-size:12px;color:rgba(255,255,255,.45);letter-spacing:2px;margin-bottom:28px;display:block}
+.hero-points{display:flex;justify-content:center;gap:0;border:1px solid rgba(255,255,255,.1);max-width:320px;margin:0 auto 32px}
+.hero-point{flex:1;padding:16px 8px;border-right:1px solid rgba(255,255,255,.1);text-align:center}
+.hero-point:last-child{border-right:none}
+.point-val{font-size:18px;font-weight:700;color:#f0c0d0;display:block;line-height:1}
+.point-label{font-size:9px;color:rgba(255,255,255,.35);letter-spacing:1px;display:block;margin-top:4px}
+.hero-cta{display:flex;flex-direction:column;gap:12px;max-width:300px;margin:0 auto}
+.hero-cta a{display:block;padding:18px;text-align:center;font-size:15px;font-weight:700;text-decoration:none;border-radius:4px}
+.cta-primary{background:#8b3a5a;color:white}
+.cta-secondary{border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.7)}
+
+.section{padding:48px 24px;max-width:640px;margin:0 auto}
+.sec-label{font-size:10px;letter-spacing:4px;color:#8b3a5a;display:block;margin-bottom:8px}
+.sec-heading{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:#2a1520;margin-bottom:28px}
+
+/* こだわり */
+.points-list{display:flex;flex-direction:column;gap:14px}
+.point-item{background:white;padding:20px;border-left:3px solid #d4a0b4}
+.point-item h3{font-size:14px;font-weight:700;margin-bottom:6px;color:#2a1520}
+.point-item p{font-size:13px;color:#666;line-height:1.9}
+
+/* MENU */
+.menu-bg{background:#2a1520;padding:48px 24px}
+.menu-inner{max-width:640px;margin:0 auto}
+.menu-bg .sec-label{color:#d4a0b4}
+.menu-bg .sec-heading{color:white;font-family:'Cormorant Garamond',serif}
+.menu-tabs{display:flex;gap:2px;margin-bottom:20px;overflow-x:auto}
+.menu-tab{flex-shrink:0;padding:10px 20px;font-size:12px;font-weight:700;letter-spacing:1px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);border:none;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .3s}
+.menu-tab.active{background:#8b3a5a;color:white}
+.menu-content{display:none}
+.menu-content.active{display:block}
+.menu-list{display:flex;flex-direction:column;gap:2px}
+.menu-item{background:rgba(255,255,255,.05);padding:18px 16px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.menu-name{font-size:14px;font-weight:700;color:white;display:block;margin-bottom:4px}
+.menu-desc{font-size:12px;color:rgba(255,255,255,.4);line-height:1.7}
+.menu-right{text-align:right;flex-shrink:0}
+.menu-price{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#d4a0b4;display:block}
+.menu-time{font-size:10px;color:rgba(255,255,255,.25);display:block;margin-top:3px}
+.popular-tag{display:inline-block;background:#8b3a5a;color:white;font-size:9px;padding:2px 7px;margin-bottom:6px}
+.menu-note{font-size:12px;color:rgba(255,255,255,.25);margin-top:14px}
+
+/* 流れ */
+.flow-list{display:flex;flex-direction:column}
+.flow-item{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid #f0dde6}
+.flow-item:last-child{border-bottom:none}
+.flow-num{width:36px;height:36px;border-radius:50%;background:#8b3a5a;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0}
+.flow-body h3{font-size:14px;font-weight:700;margin-bottom:5px}
+.flow-body p{font-size:13px;color:#666;line-height:1.9}
+
+/* 営業時間 */
+.hours-list{display:flex;flex-direction:column;gap:2px}
+.hours-item{background:white;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.hours-day{font-size:14px;font-weight:700;min-width:80px}
+.hours-time{font-size:13px;color:#555}
+.badge{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:700}
+.badge-open{background:#fce8f0;color:#8b3a5a}
+.badge-closed{background:#f5f5f5;color:#999}
+.hours-note{font-size:12px;color:#999;margin-top:12px;line-height:1.8}
+
+/* RESERVE */
+.reserve-bg{background:#8b3a5a;padding:48px 24px}
+.reserve-inner{max-width:640px;margin:0 auto}
+.reserve-bg .sec-label{color:rgba(255,255,255,.5)}
+.reserve-bg .sec-heading{color:white;font-family:'Cormorant Garamond',serif}
+.reserve-note{font-size:13px;color:rgba(255,255,255,.7);line-height:2;margin-bottom:20px}
+.reserve-list{display:flex;flex-direction:column;gap:10px}
+.reserve-item{background:rgba(255,255,255,.12);padding:18px 20px;display:flex;align-items:center;gap:16px;text-decoration:none;color:white}
+.r-icon{font-size:11px;letter-spacing:1px;background:rgba(255,255,255,.2);padding:6px 10px;flex-shrink:0;font-weight:700}
+.r-label{font-size:11px;color:rgba(255,255,255,.5);display:block;margin-bottom:4px}
+.r-val{font-size:15px;font-weight:700}
+.r-arrow{margin-left:auto;font-size:20px;opacity:.5}
+
+.access-list{display:flex;flex-direction:column}
+.access-row{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid #f0dde6}
+.access-row:last-child{border-bottom:none}
+.access-key{font-size:11px;letter-spacing:2px;color:#8b3a5a;width:72px;flex-shrink:0;padding-top:2px}
+.access-val{font-size:14px;color:#3a2028;line-height:1.8}
+.map-area{background:#f5e8ee;height:180px;margin-top:20px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#bbb}
+
+footer{background:#2a1520;padding:28px 20px;text-align:center}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:rgba(255,255,255,.3);letter-spacing:4px;display:block;margin-bottom:6px}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.15)}
+</style>
+</head>
+<body>
+
+<div class="reserve-bar">
+  <a href="tel:xxx-xxxx-xxxx" class="btn-tel">電話で予約</a>
+  <a href="#reserve" class="btn-line">LINEで予約</a>
+  <a href="#reserve" class="btn-web">ネット予約</a>
+</div>
+
+<nav>
+  <a href="#top" class="nav-logo">Chawa</a>
+  <ul class="nav-links">
+    <li><a href="#menu">料金</a></li>
+    <li><a href="#flow">流れ</a></li>
+    <li><a href="#reserve">予約</a></li>
+    <li><a href="#access">アクセス</a></li>
+  </ul>
+</nav>
+
+<section id="top" class="hero">
+  <div class="hero-badge">PRIVATE NAIL SALON — MORIGUCHI</div>
+  <h1>Chawa</h1>
+  <span class="hero-sub">守口市 / プライベートネイルサロン</span>
+  <div class="hero-points">
+    <div class="hero-point"><span class="point-val">5.0</span><span class="point-label">Google評価</span></div>
+    <div class="hero-point"><span class="point-val">完全</span><span class="point-label">プライベート</span></div>
+    <div class="hero-point"><span class="point-val">当日</span><span class="point-label">予約OK</span></div>
+  </div>
+  <div class="hero-cta">
+    <a href="#reserve" class="cta-primary">今すぐ予約する</a>
+    <a href="#menu" class="cta-secondary">料金を見る</a>
+  </div>
+</section>
+
+<!-- こだわり -->
+<div class="section">
+  <span class="sec-label">OUR COMMITMENT</span>
+  <div class="sec-heading">Chawaのこだわり</div>
+  <div class="points-list">
+    <div class="point-item">
+      <h3>爪に優しい施術</h3>
+      <p>爪や皮膚へのダメージを最小限に抑えた丁寧な施術。長く健康的な爪を保つためのケアを大切にしています。</p>
+    </div>
+    <div class="point-item">
+      <h3>完全プライベート空間</h3>
+      <p>他のお客様を気にせず、リラックスしてお過ごしいただけます。</p>
+    </div>
+    <div class="point-item">
+      <h3>豊富なデザイン対応</h3>
+      <p>シンプルから個性的なデザインまで幅広く対応。持ち込みデザインのご相談もお気軽にどうぞ。</p>
+    </div>
+  </div>
+</div>
+
+<!-- MENU -->
+<div class="menu-bg" id="menu">
+  <div class="menu-inner">
+    <span class="sec-label">MENU & PRICE</span>
+    <div class="sec-heading">料金メニュー</div>
+    <div class="menu-tabs">
+      <button class="menu-tab active" onclick="showTab(this,'hand')">ハンドネイル</button>
+      <button class="menu-tab" onclick="showTab(this,'foot')">フットネイル</button>
+      <button class="menu-tab" onclick="showTab(this,'care')">ネイルケア</button>
+    </div>
+    <div class="menu-content active" id="tab-hand">
+      <div class="menu-list">
+        <div class="menu-item">
+          <div>
+            <span class="popular-tag">人気No.1</span>
+            <span class="menu-name">ワンカラー</span>
+            <span class="menu-desc">シンプルで上品なワンカラー仕上げ。オフ込み。</span>
+          </div>
+          <div class="menu-right"><span class="menu-price">¥4,500</span><span class="menu-time">60分</span></div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-name">デザインコース</span>
+            <span class="menu-desc">フレンチ・グラデーション・持ち込みデザイン等。カウンセリングの上ご提案します。</span>
+          </div>
+          <div class="menu-right"><span class="menu-price">¥6,000〜</span><span class="menu-time">90分</span></div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-name">フィルイン</span>
+            <span class="menu-desc">ベースを残してリペア。爪への負担を減らして付け替えができます。</span>
+          </div>
+          <div class="menu-right"><span class="menu-price">¥5,500〜</span><span class="menu-time">75分</span></div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-name">オフのみ</span>
+            <span class="menu-desc">ジェルネイルのオフのみ承ります。</span>
+          </div>
+          <div class="menu-right"><span class="menu-price">¥2,000</span><span class="menu-time">30分</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-content" id="tab-foot">
+      <div class="menu-list">
+        <div class="menu-item">
+          <div>
+            <span class="menu-name">フットワンカラー</span>
+            <span class="menu-desc">足元をシンプルに美しく。甘皮処理・形成込み。</span>
+          </div>
+          <div class="menu-right"><span class="menu-price">¥4,500</span><span class="menu-time">60分</span></div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-name">フットデザインコース</span>
+            <span class="menu-desc">サンダルシーズンに向けたフットのデザインコース。</span>
+          </div>
+          <div class="menu-right"><span class="menu-price">¥5,500〜</span><span class="menu-time">75分</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-content" id="tab-care">
+      <div class="menu-list">
+        <div class="menu-item">
+          <div>
+            <span class="menu-name">ネイルケア</span>
+            <span class="menu-desc">甘皮処理・保湿ケア。健康的な素爪に整えます。</span>
+          </div>
+          <div class="menu-right"><span class="menu-price">¥2,500</span><span class="menu-time">30分</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="menu-note">※料金は変更になる場合があります。詳細はお問い合わせください。</p>
+  </div>
+</div>
+
+<!-- 流れ -->
+<div class="section" id="flow">
+  <span class="sec-label">FLOW</span>
+  <div class="sec-heading">ご来店の流れ</div>
+  <div class="flow-list">
+    <div class="flow-item">
+      <div class="flow-num">1</div>
+      <div class="flow-body"><h3>ご予約</h3><p>電話・LINEにてご予約ください。希望のデザインや施術内容もお気軽にご相談いただけます。</p></div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">2</div>
+      <div class="flow-body"><h3>カウンセリング</h3><p>デザインのご要望・爪の状態・アレルギーの有無などを確認します。</p></div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">3</div>
+      <div class="flow-body"><h3>施術</h3><p>丁寧に施術いたします。気になることがあればいつでもお声がけください。</p></div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">4</div>
+      <div class="flow-body"><h3>お会計・次回予約</h3><p>次回のご予約もその場で承ります。</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- 営業時間 -->
+<div class="section" id="hours">
+  <span class="sec-label">HOURS</span>
+  <div class="sec-heading">営業時間</div>
+  <div class="hours-list">
+    <div class="hours-item"><span class="hours-day">火〜土</span><span class="hours-time">受注後に記載予定</span><span class="badge badge-open">営業</span></div>
+    <div class="hours-item"><span class="hours-day">日・月</span><span class="hours-time">—</span><span class="badge badge-closed">定休日</span></div>
+  </div>
+  <p class="hours-note">最新の営業時間はInstagramまたはお電話でご確認ください。</p>
+</div>
+
+<!-- RESERVE -->
+<div class="reserve-bg" id="reserve">
+  <div class="reserve-inner">
+    <span class="sec-label">RESERVATION</span>
+    <div class="sec-heading">ご予約</div>
+    <p class="reserve-note">はじめての方もお気軽にどうぞ。当日予約もできます。</p>
+    <div class="reserve-list">
+      <a href="tel:xxx-xxxx-xxxx" class="reserve-item">
+        <span class="r-icon">TEL</span>
+        <div><span class="r-label">電話でご予約</span><span class="r-val">xxx-xxxx-xxxx</span></div>
+        <span class="r-arrow">›</span>
+      </a>
+      <a href="#" class="reserve-item">
+        <span class="r-icon">LINE</span>
+        <div><span class="r-label">LINEでご予約</span><span class="r-val">友だち追加して予約</span></div>
+        <span class="r-arrow">›</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ACCESS -->
+<div class="section" id="access">
+  <span class="sec-label">ACCESS</span>
+  <div class="sec-heading">アクセス</div>
+  <div class="access-list">
+    <div class="access-row"><span class="access-key">住所</span><span class="access-val">大阪府守口市（詳細は予約時にお知らせします）</span></div>
+    <div class="access-row"><span class="access-key">アクセス</span><span class="access-val">受注後に記載予定</span></div>
+    <div class="access-row"><span class="access-key">駐車場</span><span class="access-val">受注後に記載予定</span></div>
+  </div>
+  <div class="map-area">Googleマップ埋め込み予定</div>
+</div>
+
+<footer>
+  <span class="footer-logo">Chawa</span>
+  <div class="footer-copy">© 2026 Chawa Nail Salon — Moriguchi, Osaka</div>
+</footer>
+
+<script>
+function showTab(btn,id){
+  document.querySelectorAll('.menu-content').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.menu-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
